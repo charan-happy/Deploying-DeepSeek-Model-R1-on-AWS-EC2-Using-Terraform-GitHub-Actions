@@ -1,7 +1,7 @@
 # application load balancer 
 
 resource "aws_lb" "deepseek_alb" {
-  name               = "deepseek-alb"
+  name               = "deepseek-alb2"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
@@ -45,7 +45,7 @@ resource "aws_security_group" "alb_sg" {
 # ALB Target group 
 
 resource "aws_lb_target_group" "deepseek_tg" {
-  name     = "deepseek-tg"
+  name     = "deepseek-tg2"
   port     = 5000
   protocol = "HTTP"
   vpc_id   = var.vpc_id

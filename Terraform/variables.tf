@@ -7,7 +7,7 @@ variable "ami_id" {
 }
 
 variable "instance_type" {
-  default = "g4dn.xlarge" #GPU instance type
+  default = "t2.large" #GPU instance type
 }
 
 variable "key_pair_name" {
