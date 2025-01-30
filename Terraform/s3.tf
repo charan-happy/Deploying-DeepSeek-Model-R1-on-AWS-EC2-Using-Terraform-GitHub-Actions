@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "deepseek_bucket" {
   bucket = "deepseek-model-data"
-  acl = "private"
+  acl    = "private"
 
   server_side_encryption_configuration {
     rule {

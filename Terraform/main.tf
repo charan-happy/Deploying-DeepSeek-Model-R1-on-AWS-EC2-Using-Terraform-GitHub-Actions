@@ -4,11 +4,11 @@ provider "aws" {
 
 # EC2 instance with GPU support
 resource "aws_instance" "deepseekmodel" {
-  ami               = var.ami_id
-  instance_type     = var.instance_type
-  key_name          = var.key_pair_name
+  ami                  = var.ami_id
+  instance_type        = var.instance_type
+  key_name             = var.key_pair_name
   iam_instance_profile = aws_iam_instance_profile.deepseek_profile.name
-  security_groups   = [aws_security_group.deepseek_sg.name]
+  security_groups      = [aws_security_group.deepseek_sg.name]
 
   # User data script to install Docker and deploy the model
   user_data = file("user-data.sh")
