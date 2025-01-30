@@ -68,7 +68,7 @@ resource "aws_lb_listener" "deepseek_listener" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "forwward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.deepseek_tg.arn
   }
 }

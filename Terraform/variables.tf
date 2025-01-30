@@ -1,13 +1,13 @@
 variable "aws_region" {
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "ami_id" {
-  default = "ami-04b4f1a9cf54c11d0" # replace with your ami id 
+  default = "ami-00c257e12d6828491" # replace with your ami id 
 }
 
 variable "instance_type" {
-  default = "g4dn.large" #GPU instance type
+  default = "g4dn.xlarge" #GPU instance type
 }
 
 variable "key_pair_name" {
@@ -15,9 +15,9 @@ variable "key_pair_name" {
 }
 
 variable "vpc_id" {
-  default = "vpc-0ebdbf4bfda1aaff5"
+  default = "vpc-072176796ee4e7bb8"
 }
 
 variable "public_subnets" {
-  default = ["subnet-03adae12ba0076b25", "subnet-03c9b780f8a8b6cad"]
+  default = ["subnet-078242d0d26a51ce9", "subnet-0525ade82fe64df93"]
 }
