@@ -4,7 +4,7 @@ resource "aws_lb" "deepseek_alb" {
   name               = "deepseek-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb.sg.id]
+  security_groups    = [aws_security_group.alb_sg.id]
   subnets            = var.public_subnets
 
   enable_deletion_protection = false
@@ -76,6 +76,6 @@ resource "aws_lb_listener" "deepseek_listener" {
 # Attach ec2 instance to ALB Target Group 
 resource "aws_lb_target_group_attachment" "deepseek_attachment" {
   target_group_arn = aws_lb_target_group.deepseek_tg.arn
-  target_id        = aws_instance.deepseek_model.id
+  target_id        = aws_instance.deepseekmodel.id
   port             = 5000
 }
