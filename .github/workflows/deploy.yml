@@ -19,20 +19,20 @@ jobs:
           terraform_version: "1.5.0"  
 
       - name: Terraform init  
-        run: terraform init  
+        run: cd Terraform && terraform init  
         
       - name: Terraform Validate  
-        run: terraform validate  
+        run: cd Terraform && terraform validate  
         
       - name: Terraform plan  
-        run: terraform plan  
+        run: cd Terraform && terraform plan  
         env:  
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
           AWS_REGION: ${{ secrets.AWS_REGION }}  
 
       - name: Terraform Apply  
-        run: terraform apply --auto-approve  
+        run: cd Terraform && terraform apply --auto-approve  
         env:  
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
@@ -70,12 +70,13 @@ jobs:
         uses: hashicorp/setup-terraform@v2  
         with:  
           terraform_version: "1.5.0"  
-
-      - name: Terraform init  
-        run: terraform init  
+      
+      - name: Terraform init 
+        run: cd Terraform && terraform init 
+ 
 
       - name: Terraform destroy  
-        run: terraform destroy --auto-approve  
+        run: cd Terraform && terraform destroy --auto-approve  
         env:  
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
