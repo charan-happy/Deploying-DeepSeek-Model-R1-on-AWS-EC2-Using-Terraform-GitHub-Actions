@@ -67,6 +67,7 @@ jobs:
 
       - name: Deploy DeepSeek Model R1
         run: |
+            set -x
             # Get the public IP of the EC2 instance
             INSTANCE_IP=$(terraform output -raw instance_public_ip)
             if [[ -z "$INSTANCE_IP" ]]; then  
@@ -80,6 +81,10 @@ jobs:
             sudo docker pull deepseek/model-r1:latest
             sudo docker run -d -p 5000:5000 --name deepseek-model deepseek/model-r1:latest
             EOF
+        env:  
+            AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+            AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
+            AWS_REGION: ${{ secrets.AWS_REGION }}  
 
       - name: Get Load Balancer DNS name  
         run: |  
