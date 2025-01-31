@@ -65,6 +65,9 @@ jobs:
      # - name: Ping EC2 Instance
       #  run: ping -c 4 $(terraform output -raw instance_public_ip)
 
+      - name: terraform refresh
+        run: terraform refresh
+        
       - name: Deploy DeepSeek Model R1
         run: |
             set -x
