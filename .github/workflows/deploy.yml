@@ -24,6 +24,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: checking terraform version
+        run: terraform version
 
       - name: Terraform init  
         run: cd Terraform && terraform init  
@@ -66,9 +69,14 @@ jobs:
         run: |
             # Get the public IP of the EC2 instance
             INSTANCE_IP=$(terraform output -raw instance_public_ip)
+            if [[ -z "$INSTANCE_IP" ]]; then  
+                echo "No public IP found for the instance."  
+              exit 1  
+            fi
         
             # SSH into the instance and run Docker commands
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/deepseek-key root@$INSTANCE_IP << 'EOF'
+            set -x 
             sudo docker pull deepseek/model-r1:latest
             sudo docker run -d -p 5000:5000 --name deepseek-model deepseek/model-r1:latest
             EOF
