@@ -48,7 +48,7 @@ jobs:
             INSTANCE_IP=$(terraform output -raw instance_public_ip)
         
             # SSH into the instance and run Docker commands
-            ssh -o StrictHostKeyChecking=no -i deepseek-key ubuntu@$INSTANCE_IP << 'EOF'
+            ssh -o StrictHostKeyChecking=no -i deepseek-key root@$INSTANCE_IP << 'EOF'
             sudo docker pull deepseek/model-r1:latest
             sudo docker run -d -p 5000:5000 --name deepseek-model deepseek/model-r1:latest
             EOF
