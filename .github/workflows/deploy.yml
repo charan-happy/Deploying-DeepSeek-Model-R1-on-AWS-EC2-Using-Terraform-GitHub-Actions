@@ -31,8 +31,12 @@ jobs:
       - name: Terraform init  
         run: cd Terraform && terraform init  
 
-      - name: destroy any existing resources
-        run: cd Terraform && terraform destory --auto-approve
+      - name: Terraform destroy  
+        run: cd Terraform && terraform destroy --auto-approve  
+        env:  
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
+          AWS_REGION: ${{ secrets.AWS_REGION }}
 
       - name: Initialize fresh terraform
         run: cd Terraform && terrraform init
