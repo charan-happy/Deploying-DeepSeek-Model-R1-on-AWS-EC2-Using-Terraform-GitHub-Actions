@@ -32,10 +32,9 @@ jobs:
         run: cd Terraform && terraform validate  
         
       - name: Terraform plan  
-        run: cd Terraform 
         id: plan
         run: |
-          terraform plan -no-color -input=false -out=tfplan
+          cd Terraform && terraform plan -no-color -input=false -out=tfplan
           echo "changes=$(terraform show -no-color tfplan | grep -q 'No changes.' && echo 'false' || echo 'true')" >> $GITHUB_OUTPUT  
         env:  
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
@@ -43,9 +42,8 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}  
 
       - name: Terraform Apply  
-        run: cd Terraform 
-        if: steps.plan.outputs.changes == 'true'
-        run: terraform apply --auto-approve  
+        run: cd Terraform && terraform apply --auto-approve
+        if: steps.plan.outputs.changes == 'true' 
         env:  
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}  
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}  
