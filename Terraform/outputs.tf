@@ -7,5 +7,5 @@ output "alb_dns_name" {
 }  
 
 output "s3_bucket_name" {  
-  value = aws_s3_bucket.deepseek_bucket.id  
+  value = aws_s3_bucket.deepseek_bucket[0].id  
 }
