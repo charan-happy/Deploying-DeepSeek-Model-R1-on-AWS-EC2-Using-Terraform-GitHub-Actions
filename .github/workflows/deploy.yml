@@ -39,7 +39,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
 
       - name: Initialize fresh terraform
-        run: cd Terraform && terrraform init
+        run: cd Terraform && terraform init
         
       - name: Terraform Validate  
         run: cd Terraform && terraform validate  
