@@ -1,9 +1,8 @@
-# Data source to check for existing ALB  
+# Data sources to check for existing ALB and Target Group  
 data "aws_lb" "existing_alb" {  
   name = "deepseek-alb4"  
 }  
 
-# Data source to check for existing Target Group  
 data "aws_lb_target_group" "existing_tg" {  
   name = "deepseek-tg4"  
 }  
@@ -68,6 +67,7 @@ resource "aws_lb_target_group" "deepseek_tg" {
 
 # ALB Listener  
 resource "aws_lb_listener" "deepseek_listener" {  
+  count              = aws_lb.deepseek_alb.*.arn != [] ? 1 : 0  
   load_balancer_arn = aws_lb.deepseek_alb[0].arn  
   port              = 80  
   protocol          = "HTTP"  
@@ -80,7 +80,9 @@ resource "aws_lb_listener" "deepseek_listener" {
 
 # Attach EC2 instance to ALB Target Group  
 resource "aws_lb_target_group_attachment" "deepseek_attachment" {  
+  count = aws_lb_target_group.deepseek_tg.*.arn != [] ? 1 : 0  
   target_group_arn = aws_lb_target_group.deepseek_tg[0].arn  
   target_id        = aws_instance.deepseekmodel.id  
   port             = 5000  
-}
+}  
+
