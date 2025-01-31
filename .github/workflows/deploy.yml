@@ -59,8 +59,8 @@ jobs:
         run: sleep 60  # Wait for 60 seconds
   
         # Step 9: Ping EC2 Instance
-      - name: Ping EC2 Instance
-        run: ping -c 4 $(terraform output -raw instance_public_ip)
+     # - name: Ping EC2 Instance
+      #  run: ping -c 4 $(terraform output -raw instance_public_ip)
 
       - name: Deploy DeepSeek Model R1
         run: |
