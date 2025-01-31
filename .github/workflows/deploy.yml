@@ -16,7 +16,7 @@ jobs:
       - name: Setup Terraform  
         uses: hashicorp/setup-terraform@v2  
         with:  
-          terraform_version: "1.5.0"  
+          terraform_version: latest
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -30,6 +30,12 @@ jobs:
 
       - name: Terraform init  
         run: cd Terraform && terraform init  
+
+      - name: destroy any existing resources
+        run: cd Terraform && terraform destory --auto-approve
+
+      - name: Initialize fresh terraform
+        run: cd Terraform && terrraform init
         
       - name: Terraform Validate  
         run: cd Terraform && terraform validate  
@@ -67,7 +73,7 @@ jobs:
 
       - name: terraform refresh
         run: terraform refresh
-        
+
       - name: Deploy DeepSeek Model R1
         run: |
             set -x
