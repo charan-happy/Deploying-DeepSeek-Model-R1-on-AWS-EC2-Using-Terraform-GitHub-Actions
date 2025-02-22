@@ -134,15 +134,18 @@ step 4: Run Github Actions Workflow
 
 ### 8. Troubleshooting
 
+
+[Refer](charan-happy/Deploying-DeepSeekModel-R1-on-AWS-Cloud-Using-Terraform-and-Github-Action)
+
 ### 9. References 
 
-1. Terraform Documentation
+[1. Terraform Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
-2. Github Actions Documentation
+[2. Github Actions Documentation](https://docs.github.com/en/actions)
 
-3. Docker Documentation
+[3. Docker Documentation](https://docs.docker.com/)
 
-4. AWS EC2 User Guide
+[4. AWS EC2 User Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 
 
 
